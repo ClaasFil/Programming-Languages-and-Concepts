@@ -21,15 +21,23 @@ public class RentedApartment extends Apartment {
         return  rent * getArea() +  tenants_cost;
     }
 
+
     @Override
-    public String toString(){
-        DecimalFormat df = Apartment.getDecimalFormat();;
-        return "OA, ID: " + getId() + ", Area: " + df.format(getArea()) + ", Num. Rooms: " + df.format(getNumRooms()) + 
-        ", Floor: " + getFloor() + ", Year: " + getAge() + ", Postal Code: " + getPostalCode() + 
-        ", Street: " + getStreet() + "House Number: " + getHouseNumber() + ", Apartment Number: " + 
-        getArpartmentNumber() + ", Monthly Rent: " + df.format(rent) + ", Number of Tenants: " +
-        df.format(tenants) + ", Total Cost: " + df.format(getTotalCost());
+    public String toString() {
+        DecimalFormat df = Apartment.getDecimalFormat();  // Use DecimalFormat for 2 decimal places
         
+        return "Type:              RA\n" +
+            "Id:                " + this.getId() + "\n" +
+            "Area:              " + df.format(this.getArea()) + "\n" +
+            "Rooms:             " + df.format(getNumRooms()) + "\n" +
+            "Floor:             " + this.getFloor() + "\n" +
+            "Year Built:        " + this.getYear() + "\n" +
+            "Postal Code:       " + this.getPostalCode() + "\n" +
+            "Street:            " + this.getStreet() + "\n" +
+            "House Number:      " + this.getHouseNumber() + "\n" +
+            "Apartment Number:  " + this.getArpartmentNumber() + "\n" +
+            "Rent/m2:           " + df.format(rent) + "\n" +
+            "Number of Tenants: " + df.format(tenants);
     }
 
 

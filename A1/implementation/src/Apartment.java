@@ -24,52 +24,14 @@ public abstract class Apartment implements Serializable{
 
 		
 		
-		//System.out.println("Apartment constructor called");
-		// Input param test
-
-		if (id == null || id < 0) {
-			throw new IllegalArgumentException("Error: Invalid parameter.");
-		}
 		this.id = id;
-
-		if (area == 0 || area < 0) {
-			throw new IllegalArgumentException("Error: Invalid parameter.");
-		}
 		this.area = area;
-
-		if (num_rooms == 0 || num_rooms < 0) {
-			throw new IllegalArgumentException("Error: Invalid parameter.");
-		}
 		this.num_rooms = num_rooms;
-		
-		if ( floor < 0) {
-			throw new IllegalArgumentException("Error: Invalid parameter.");
-		}
 		this.floor = floor;
-
-		if (2024 < year|| year < 0) {
-			throw new IllegalArgumentException("Invalid year of construction.");
-		}
 		this.year = year;
-
-		if (postal_code == null || postal_code < 0) {
-			throw new IllegalArgumentException("Error: Invalid parameter.");
-		}
 		this.postal_code = postal_code;
-		
-		if (street == null || street.isEmpty()) {
-			throw new IllegalArgumentException("Error: Invalid parameter.");
-		}
 		this.street = street;
-		
-		if (house_number == null || house_number < 0) {
-			throw new IllegalArgumentException("Error: Invalid parameter.");
-		}
 		this.house_number = house_number;
-		
-		if (arpartment_number == null || arpartment_number < 0) {
-			throw new IllegalArgumentException("Error: Invalid parameter.");
-		}
 		this.arpartment_number = arpartment_number;
 
 

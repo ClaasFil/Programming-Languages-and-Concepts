@@ -23,7 +23,7 @@ public class PropertyManagementClient {
 
         //System.out.println(oa.toString());
 
-        serilizazion_test();
+        //serilizazion_test();
 
         //test_Arpartments();
 
@@ -63,7 +63,9 @@ public class PropertyManagementClient {
             case "oldest":
                 oldestInput(args, pm);
                 break;
-
+            case "delete":
+                delet_by_id(args, pm);
+                break;
 
             default:
                 System.out.println("Unknown command: " + args[1]);
@@ -102,10 +104,33 @@ public class PropertyManagementClient {
 
     }
 
+    private static void delet_by_id(String[] args, PropertyManagement pm){
+        if(args.length < 3){
+            System.out.println("Error: Invalid parameter.");
+        }
+        else{
+            int apartmentId = Integer.parseInt(args[2]);
+                Apartment apm = pm.get_info_aptm_by_id(apartmentId);
+                if (apm != null) {
+                    pm.delete_aptm(apartmentId);
+                    System.out.println("Info: Apartment "+ args[2] + " deleted.");
+                } else {
+                    System.out.println("Error: Apartment not found. (id="+args[2]+")");
+                }
+        }
+    }
 
     private static void addInpu(String[] args, PropertyManagement pm){
+        
+        if (pm.get_info_aptm_by_id(Integer.valueOf(args[3])) != null) {
+            System.out.println("Error: Apartment already exists. (id="+args[3]+")");
+        }
+        else
         if(args.length < 14){
             System.out.println("Error: Invalid parameter.");
+        }
+        else if (Integer.valueOf(args[7]) > 2024) {
+            System.out.println("Error: Invalid year of construction.");
         }
         else {
             switch (args[2]) {
@@ -208,7 +233,14 @@ public class PropertyManagementClient {
     private static void listInput(String[] args, PropertyManagement pm){
         // If no int provided print all apartments
         if (args.length < 3) {
-            System.out.println(pm.get_info_all_aptm());
+            List<Apartment> aptms = pm.get_info_all_aptm();
+            for (Apartment aptm : aptms) {
+                System.out.println(aptm.toString());
+                // if not last print new line
+                if (aptms.indexOf(aptm) != aptms.size() - 1){
+                    System.out.println();
+                }
+            }
         }
         else{
             try {

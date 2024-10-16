@@ -22,15 +22,24 @@ public class OwnedApartment extends Apartment{
         return  (operating_costs + maintenace_reserve)*getArea() * (1 + level_cost);
     }
 
+
+
     @Override
-    public String toString(){
-        DecimalFormat df = Apartment.getDecimalFormat();;
-        return "OA, ID: " + getId() + ", Area: " + df.format(getArea()) + ", Num. Rooms: " + df.format(getNumRooms()) + 
-        ", Floor: " + getFloor() + ", Year: " + getAge() + ", Postal Code: " + getPostalCode() + 
-        ", Street: " + getStreet() + "House Number: " + getHouseNumber() + ", Apartment Number: " + 
-        getArpartmentNumber() + ", Operating Costs: " + df.format(operating_costs) + ", Maintenance Reserve: " +
-        df.format(maintenace_reserve) + ", Total Cost: " + df.format(getTotalCost());
+    public String toString() {
+        DecimalFormat df = Apartment.getDecimalFormat();  // Use DecimalFormat for 2 decimal places
         
+        return "Type:              OA\n" +
+            "Id:                " + this.getId() + "\n" +
+            "Area:              " + df.format(this.getArea()) + "\n" +
+            "Rooms:             " + df.format(getNumRooms()) + "\n" +
+            "Floor:             " + this.getFloor() + "\n" +
+            "Year Built:        " + this.getYear() + "\n" +
+            "Postal Code:       " + this.getPostalCode() + "\n" +
+            "Street:            " + this.getStreet() + "\n" +
+            "House Number:      " + this.getHouseNumber() + "\n" +
+            "Apartment Number:  " + this.getArpartmentNumber() + "\n" +
+            "Operating Costs:   " + df.format(operating_costs) + "\n" +
+            "Reserve Fund:      " + df.format(maintenace_reserve);
     }
 
     
