@@ -5,48 +5,31 @@ import java.util.Map;
 
 public class PropertyManagementClient {
 
-    //javac *.java
+
+    public static void main(String[] args) {
+        if (args.length > 1) {
+            processCommandLineArguments(args);
+        }else{
+            System.out.println("Error: Invalid parameter.");
+        }
+
+
+    }
+
+
+
+    private static void processCommandLineArguments(String[] args){
+        //System.out.println(args[0]);
+        //javac *.java
     //java PropertyManagementClient default_aptm list
 
     // java PropertyManagementClient default_aptm add OA 97 100.0 3 1 1890 1090 Berggasse 19 4 2.55 0.45
     // java PropertyManagementClient default_aptm add RA 2 95.0 3 3 1894 1080 "Lange Gasse" 15 16 8.75 2
 
     //RA 2 95.0 3 3 1894 1080 "Lange Gasse" 15 16 8.75 2
-
-    public static void main(String[] args) {
-        //default_aptm
         
-        
-        // print Hello world
-        
-        //OwnedApartment oa = new OwnedApartment(1, 10.2356, 3, 0, 1997, 14612, "someStreet", 34, 14, 34.3423, 78787.89);
-
-        //System.out.println(oa.toString());
-
-        //serilizazion_test();
-
-        //test_Arpartments();
-
-        comandLinestuff(args);
-
-    }
-
-    private static void comandLinestuff(String[] args){
-        //System.out.println("start");
-        if (args.length > 1) {
-            processCommandLineArguments(args);
-        }
-        else{
-            System.err.println("invalit comand line call"); 
-        }
-    }
-
-    private static void processCommandLineArguments(String[] args){
-        //System.out.println(args[0]);
         PropertyManagement pm = new PropertyManagement(new PropertyManagementSerializationDAO(args[0]));
-
-        
-        
+    
         switch (args[1].toLowerCase()){
             case "list":
                 listInput(args, pm);
@@ -68,14 +51,15 @@ public class PropertyManagementClient {
                 break;
 
             default:
-                System.out.println("Unknown command: " + args[1]);
+                System.out.println("Error: Invalid parameter.");
                 break;
         }
+    
     }
 
     private static void oldestInput(String[] args, PropertyManagement pm){
         List<Apartment> aptms = pm.oldest_aptm();
-        aptms.stream().forEach(aptm -> System.out.println("ID: "+ String.valueOf(aptm.getId())));
+        aptms.stream().forEach(aptm -> System.out.println("Id: "+ String.valueOf(aptm.getId())));
 
     }
 
@@ -120,12 +104,9 @@ public class PropertyManagementClient {
         }
     }
 
+    
+
     private static void addInpu(String[] args, PropertyManagement pm){
-        
-        if (pm.get_info_aptm_by_id(Integer.valueOf(args[3])) != null) {
-            System.out.println("Error: Apartment already exists. (id="+args[3]+")");
-        }
-        else
         if(args.length < 14){
             System.out.println("Error: Invalid parameter.");
         }
@@ -140,7 +121,7 @@ public class PropertyManagementClient {
                         int index = 3; 
                         Integer id = Integer.parseInt(args[index++]);
                         double area = Double.parseDouble(args[index++]);
-                        double num_rooms = Double.parseDouble(args[index++]);
+                        Integer num_rooms = Integer.parseInt(args[index++]);
                         int floor = Integer.parseInt(args[index++]);
                         int year = Integer.parseInt(args[index++]);
                         Integer postal_code = Integer.parseInt(args[index++]);
@@ -166,7 +147,9 @@ public class PropertyManagementClient {
                             tenants
                         );
 
-                        
+                        if (pm.get_info_aptm_by_id(Integer.valueOf(args[3])) != null) {
+                            System.out.println("Error: Apartment already exists. (id="+args[3]+")");
+                        }
             
                         // Add the apartment to PropertyManagement
                         pm.save_aptm(oa);
@@ -175,6 +158,8 @@ public class PropertyManagementClient {
                     } catch (NumberFormatException e) {
                         System.out.println("Error: Invalid parameter.");
                     } 
+
+                    
                     break;
             
                     case "OA":
@@ -183,7 +168,7 @@ public class PropertyManagementClient {
                         int index = 3; 
                         Integer id = Integer.parseInt(args[index++]);
                         double area = Double.parseDouble(args[index++]);
-                        double num_rooms = Double.parseDouble(args[index++]);
+                        Integer num_rooms = Integer.parseInt(args[index++]);
                         int floor = Integer.parseInt(args[index++]);
                         int year = Integer.parseInt(args[index++]);
                         Integer postal_code = Integer.parseInt(args[index++]);
@@ -209,7 +194,9 @@ public class PropertyManagementClient {
                             maintenance_reserve
                         );
 
-                        
+                        if (pm.get_info_aptm_by_id(Integer.valueOf(args[3])) != null) {
+                            System.out.println("Error: Apartment already exists. (id="+args[3]+")");
+                        }
             
                         // Add the apartment to PropertyManagement
                         pm.save_aptm(oa);
@@ -248,12 +235,10 @@ public class PropertyManagementClient {
             Apartment apm = pm.get_info_aptm_by_id(apartmentId);
             if (apm != null) {
                 System.out.println(apm.toString());
-            } else {
-                System.out.println("Apartment with ID " + apartmentId + " not found.");
-            }
+            } 
         } 
         catch (NumberFormatException e) {
-            System.out.println("Invalid apartment ID: " + args[2]);
+            System.out.println("Invalid apartment Id: " + args[2]);
             }
         }
     }

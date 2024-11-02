@@ -1,12 +1,12 @@
-import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
-import java.util.Locale;
+//import java.util.Locale;
+import java.io.Serializable;
 
 public abstract class Apartment implements Serializable{
 	private Integer id;
 	private double area;
-	private double num_rooms;
+	private Integer num_rooms;
 	private Integer floor;
 	private Integer year;
 	private Integer postal_code;
@@ -18,7 +18,7 @@ public abstract class Apartment implements Serializable{
 
 
 
-	public Apartment(Integer id, double area, double num_rooms, int floor, int year, 
+	public Apartment(Integer id, double area, Integer num_rooms, int floor, int year, 
 					Integer postal_code, String street, Integer house_number, 
 					Integer arpartment_number) {
 
@@ -46,7 +46,7 @@ public abstract class Apartment implements Serializable{
 	
 
 	public Integer getAge() {
-		return 2024 - year;
+		return  year;
 	}
 
 	public abstract double getTotalCost(); 
@@ -60,7 +60,7 @@ public abstract class Apartment implements Serializable{
 	public double getArea() {
 		return area;
 	}
-	public double getNumRooms() {
+	public Integer getNumRooms() {
 		return num_rooms;
 	}
 	public int getFloor() {
@@ -69,7 +69,7 @@ public abstract class Apartment implements Serializable{
 	public int getYear() {
 		return year;
 	}
-	public double getPostalCode() {
+	public Integer getPostalCode() {
 		return postal_code;
 	}
 	public String getStreet() {
@@ -88,8 +88,9 @@ public abstract class Apartment implements Serializable{
 	// if so Input check!!!
 
 
-
-
-
-
 }
+
+
+
+
+

@@ -51,8 +51,12 @@ public class PropertyManagement{
 
     public List<Apartment> oldest_aptm(){
         List<Apartment> aptm = dao.getApartments();
-        double max_cost = aptm.stream().mapToDouble(Apartment::getTotalCost).max().orElse(Double.NaN);
-        List<Apartment> res = aptm.stream().filter(each_atm -> (each_atm.getTotalCost() >= max_cost)).collect(Collectors.toList());
+        double max_age = aptm.stream().mapToDouble(Apartment::getYear).min().orElse(Double.NaN);
+        //System.out.println((int)(max_age));
+        //System.out.println(aptm);
+        //aptm.stream().forEach(each -> System.out.println(each.getId()));
+        //aptm.stream().forEach(each -> System.out.println(each.getYear()));
+        List<Apartment> res = aptm.stream().filter(each_atm -> (each_atm.getAge().equals( (int)(max_age)))).collect(Collectors.toList());
         return res;
     }
 
