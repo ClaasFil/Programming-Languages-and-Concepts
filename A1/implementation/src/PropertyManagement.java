@@ -40,6 +40,23 @@ public class PropertyManagement{
             ));
         return counts;
     }
+    /*
+    public Map<String, Long> count_aptm() {
+        List<Apartment> apartments = dao.getApartments();
+        Map<String, Long> counts = new HashMap<>();
+
+        for (Apartment apartment : apartments) {
+            String className = apartment.getClass().getSimpleName();
+            Long count = counts.get(className);
+            if (count == null) {
+                counts.put(className, 1L);
+            } else {
+                counts.put(className, count + 1);
+            }
+        }
+        return counts;
+    }
+    */
 
 
     public String avg_costs(){

@@ -1,6 +1,6 @@
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
-//import java.util.Locale;
+import java.util.Locale;
 import java.io.Serializable;
 
 public abstract class Apartment implements Serializable{
@@ -83,14 +83,6 @@ public abstract class Apartment implements Serializable{
 	}
 
 
-	// Setters
-	//TODO: Do I really need the setters?
-	// if so Input check!!!
 
 
 }
-
-
-
-
-

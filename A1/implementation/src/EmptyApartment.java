@@ -1,34 +1,31 @@
-import java.io.Serializable;
 import java.text.DecimalFormat;
 
 
-public class OwnedApartment extends Apartment{
-    private double operating_costs;
-    private double maintenace_reserve;
+public class EmptyApartment extends Apartment {
+    private Integer empty_since;
 
-    public OwnedApartment(Integer id, double area, Integer num_rooms, int floor, int year, 
+
+    public EmptyApartment(Integer id, double area, int num_rooms, int floor, int year, 
                     Integer postal_code, String street, Integer house_number, 
-                    Integer arpartment_number, double operating_costs, double maintenace_reserve) {
+                    Integer arpartment_number, Integer empty_since) {
         super(id, area, num_rooms, floor, year, postal_code, street, house_number, arpartment_number);
         
-        this.operating_costs = operating_costs;
-        this.maintenace_reserve = maintenace_reserve;
+        this.empty_since = empty_since;
     }
-
-
 
     public double getTotalCost() {
-        double level_cost = (getFloor() *0.02);
-        return  (operating_costs + maintenace_reserve)*getArea() * (1 + level_cost);
-    }
+        Double empty_years = Double.valueOf(2024 - this.empty_since);
 
+        return empty_years*this.getArea()*3.2 + 1.5* Double.valueOf(this.getFloor());
+
+    }
 
 
     @Override
     public String toString() {
         DecimalFormat df = Apartment.getDecimalFormat();  // Use DecimalFormat for 2 decimal places
         
-        return "Type:              EA\n" +
+        return "Type:              RA\n" +
             "Id:                " + this.getId() + "\n" +
             "Area:              " + df.format(this.getArea()) + "\n" +
             "Rooms:             " + getNumRooms() + "\n" +
@@ -38,10 +35,8 @@ public class OwnedApartment extends Apartment{
             "Street:            " + this.getStreet() + "\n" +
             "House Number:      " + this.getHouseNumber() + "\n" +
             "Apartment:         " + this.getArpartmentNumber() + "\n" +
-            "Operating Costs:   " + df.format(operating_costs) + "\n" +
-            "Reserve Fund:      " + df.format(maintenace_reserve);
+            "Empty since:       " + df.format(empty_since);
     }
 
-    
 
 }

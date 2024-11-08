@@ -30,7 +30,7 @@ public class TrafficControllerFair implements TrafficController {
 		}
 		catch (InterruptedException e){
 			Thread.currentThread().interrupt();
-			////System.out.println("Thread interrupted: " + e.getMessage());
+			//System.out.println("Thread interrupted: " + e.getMessage());
 		}finally {
             lock.unlock();
         }
@@ -38,7 +38,7 @@ public class TrafficControllerFair implements TrafficController {
 		   
 	}
 	
-	public synchronized void enterLeft(Vehicle v) {
+	public void enterLeft(Vehicle v) {
 		lock.lock();
 		//System.out.println("Enteringfrom left is free: " + this.bridge_free);
 		try{
@@ -57,7 +57,7 @@ public class TrafficControllerFair implements TrafficController {
         }
 	}
 	
-	public synchronized void leaveLeft(Vehicle v) { 
+	public void leaveLeft(Vehicle v) { 
 		lock.lock();
         try {
             registrar.deregisterLeft(v);
@@ -69,7 +69,7 @@ public class TrafficControllerFair implements TrafficController {
         }  
 	}
 	
-	public synchronized void leaveRight(Vehicle v) { 
+	public void leaveRight(Vehicle v) { 
 		lock.lock();
         try {
             registrar.deregisterRight(v);

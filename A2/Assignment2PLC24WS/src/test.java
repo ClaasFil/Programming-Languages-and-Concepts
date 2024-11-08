@@ -1,12 +1,20 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Predicate;
 
 
 public class test {
     public static void main(String[] args) {
+        
+        /* 
         TrafficRegistrar registrar = new TrafficRegistrarEmpty();
-        TrafficControllerSimple trafficController = new TrafficControllerSimple(registrar);
+        TrafficController trafficController = new TrafficControllerSimple(registrar);
+        //TrafficController trafficController = new TrafficControllerPrio(registrar, "rigth");
 
         // Executor service to run multiple threads concurrently
         ExecutorService executorService = Executors.newFixedThreadPool(5);
@@ -19,10 +27,10 @@ public class test {
                 int carType = random.nextInt(2); // Randomly decide if the car is REDCAR or BLUECAR
                 Car car = new Car(carType, null, null, trafficController);
                 if (carType == Car.REDCAR) {
-                    System.out.println("Car" + car.getId() + " register from right");
+                    //System.out.println("Car" + car.getId() + " register from right");
                     trafficController.enterRight(car);
                 } else {
-                    System.out.println("Car" + car.getId() + " register from left");
+                    //System.out.println("Car" + car.getId() + " register from left");
                     trafficController.enterLeft(car);
                 }
                 try {
@@ -32,11 +40,11 @@ public class test {
                     Thread.currentThread().interrupt();
                 } finally {
                     if (carType == Car.REDCAR) {
-                        System.out.println("Car" + car.getId() + " registers to leave to the left");
-                        trafficController.leaveRight(car);
-                    } else {
-                        System.out.println("Car" + car.getId() + " registers to leave to the right");
+                        //System.out.println("Car" + car.getId() + " registers to leave to the left");
                         trafficController.leaveLeft(car);
+                    } else {
+                        //System.out.println("Car" + car.getId() + " registers to leave to the right");
+                        trafficController.leaveRight(car);
                     }
                 }
             });
@@ -44,7 +52,12 @@ public class test {
 
         // Shutdown the executor service
         executorService.shutdown();
+        */
     }
+
+    
 
 
 }
+// javac src/*.java
+// java -cp src BridgeGUI

@@ -41,6 +41,7 @@ public class PropertyManagementSerializationDAO implements PropertyManagementDAO
 
     }
 
+    /*
     public void resetDB(){
         File file = new File(this.filename);
         if (file.exists()) file.delete();  // DELETE LATER -------------------------
@@ -58,7 +59,7 @@ public class PropertyManagementSerializationDAO implements PropertyManagementDAO
             }
         }
     }
-    
+    */
     
     @Override
     @SuppressWarnings("unchecked")
