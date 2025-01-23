@@ -1,0 +1,10 @@
+[package]
+name = "Assignment3PLC24WS"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+
+[[bin]]
+name = "Assignment3PLC24WS"
+path = "main.rs"
